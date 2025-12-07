@@ -6,7 +6,7 @@
  * Users are stored in SQLite database via FastAPI backend.
  */
 
-const API_BASE = ''; // Use relative path for proxying
+const API_BASE = import.meta.env.VITE_API_URL || ''; // Env var for Prod, empty for Dev proxy
 const SESSION_KEY = 'ecosort_session';
 
 /**
