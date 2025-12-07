@@ -7,6 +7,7 @@
  */
 
 const API_BASE = import.meta.env.VITE_API_URL || ''; // Env var for Prod, empty for Dev proxy
+console.log('DEBUG: Current API_BASE is:', API_BASE); // Debugging connection
 const SESSION_KEY = 'ecosort_session';
 
 /**
