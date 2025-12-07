@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { Eye, Check, X } from '@phosphor-icons/react';
+import { API_BASE } from '../../services/authService';
 
 export default function ReviewQueue() {
     const [items, setItems] = useState([]);
@@ -8,7 +9,7 @@ export default function ReviewQueue() {
 
     // Fetch Reviews
     useEffect(() => {
-        fetch('http://localhost:8000/admin/reviews')
+        fetch(`${API_BASE}/admin/reviews`)
             .then(res => res.json())
             .then(data => {
                 // Filter for pending only
@@ -20,7 +21,7 @@ export default function ReviewQueue() {
 
     const handleReview = async (item, newLabel) => {
         try {
-            await fetch(`http://localhost:8000/admin/reviews/${item.id}`, {
+            await fetch(`${API_BASE}/admin/reviews/${item.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ corrected_label: newLabel })
@@ -54,7 +55,7 @@ export default function ReviewQueue() {
                         <div style={{ height: 180, background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             {/* Note: In database.py we see filtered paths, assume backend serves /media */}
                             <img
-                                src={`http://localhost:8000/${item.image_path || 'placeholder.jpg'}`}
+                                src={`${API_BASE}/${item.image_path || 'placeholder.jpg'}`}
                                 alt="Trash"
                                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                 onError={(e) => { e.target.src = 'https://placehold.co/400x300?text=No+Image' }}

@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Users, ShieldCheck, ShieldWarning } from '@phosphor-icons/react';
+import { API_BASE } from '../../services/authService';
 
 export default function AdminDashboard({ user }) {
     const [users, setUsers] = useState([]);
@@ -8,7 +8,7 @@ export default function AdminDashboard({ user }) {
 
     // Fetch Users
     useEffect(() => {
-        fetch('http://localhost:8000/admin/users')
+        fetch(`${API_BASE}/admin/users`)
             .then(res => res.json())
             .then(data => {
                 setUsers(data);
@@ -22,7 +22,7 @@ export default function AdminDashboard({ user }) {
         if (!confirm(`Change ${targetUser.email} role to ${newRole}?`)) return;
 
         try {
-            await fetch(`http://localhost:8000/admin/users/${targetUser.id}`, {
+            await fetch(`${API_BASE}/admin/users/${targetUser.id}`, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ role: newRole })
