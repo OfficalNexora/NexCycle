@@ -36,6 +36,12 @@ async def lifespan(app: FastAPI):
         print("--> Created Default Admin: admin/admin123")
     
     yield
+    
+    # DEBUG: Print all routes
+    print("--- REGISTERED ROUTES ---")
+    for route in app.routes:
+        print(f"{route.path} [{route.methods}]")
+    print("-------------------------")
 
 # --- Configuration ---
 app = FastAPI(title="NexCycle Core", version="3.0.0", lifespan=lifespan)
