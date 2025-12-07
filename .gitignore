@@ -1,0 +1,32 @@
+# Deployment .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+
+# Node
+node_modules/
+dist/
+.env.local
+
+# Database (Local SQLite)
+*.db
+*.sqlite3
+backend/trash_logs.db
+backend/trash_log.db
+
+# Media (User Uploads)
+backend/media/*
+!backend/media/.gitkeep
+media/
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
